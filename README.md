@@ -50,7 +50,3 @@ Veja a <a href="#secao7">seção 7.0</a> para verificar funcionalidades implemen
 ## <div id="secao6">6.0 - Como executar o projeto</div>
 
 ## <div id="secao7">7.0 - Implementações após o vídeo base</div>
-
-<script>
-    console.log("aqui");
-</script>

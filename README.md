@@ -48,5 +48,44 @@ Veja a <a href="#secao7">seção 7.0</a> para verificar funcionalidades implemen
 <br/><br/>
 
 ## <div id="secao6">6.0 - Como executar o projeto</div>
+### 6.1 - Observações
+1. Foi utilizado o Visual Studio Community 2019, mas não sei se é obrigatório
+2. É necessário instalar alguns pacotes para trabalhar com o ASP.NET core (detalhes no item 6.2 - Requisitos)
+3. O SQL server deve ter um banco de dados criado para que o projeto o utilize
+### 6.2 - Requisitos
+1. Visual Studio Community (utilizei 2019)
+2. Git instalado
+3. SQL Server (ou banco de sua preferência)
+4. Pacotes NuGet: EntityFrameworkCore e seus derivados EntityFrameworkCore.Design, EntityFrameworkCore.SqlServer e EntityFrameworkCore.Tools.
+### 6.3 - Passo a passo
+1. Com o SQL server instalado e configurado, devemos criar um banco de dados para ser usado no projeto. O nome neste exemplo será "DB_SistemaDeTarefas"
+2. Clone o repositório https://github.com/pedrohspires/SistemaDeTarefasByProgramadorTech.git na sua máquina. (É possível clonar atravpes do prório Visual Studio)
+3. Abra o projeto no seu Visual Studio
+4. Com o banco de dados instalado e configurado, abra o arquivo appsettings.json
+5. Antes da propriedade "AllowedHosts", adicione os comandos abaixo:<br>
+```
+"ConnectionStrings": {<br>
+    "DataBase": "Server=./;Database=DB_SistemaDeTarefas;User Id=testes;Password=testes123"
+},
+```
+Este código faz a configuração do seu banco de dados, onde "Server=./" indica banco de dados rodando localmente, "Database=DB_SistemaDeTarefas" é o banco de dados dentro do SQL Server com o nome "DB_SistemaDeTarefas", "User Id=testes" é o usuário "testes" do banco de dados e "Password=teste123" é a senha do usuário "testes".<br>
+De acordo com suas configurações, estes dados podem mudar.<br>
+
+6. Com o banco configurado, agora é necessário criar a migration. Migration é um arquivo que gerencia as entidades do banco de dados automaticamente, bastando o programador editar os arquivos da pasta "Data/Map" para definir as propriedades de uma tabela. Abra o "Package Maneger Console" do visual studio e digite o código abaixo:<br>
+``` 
+Add-Migration InitialDB -Context SistemaDeTarefasDBContext 
+```
+7. Após criar as migrations, é necessário aplicar as alterações no banco de dados
+```
+Update-Database -Context SistemaDeTarefasDBContext 
+```
+8. Seu projeto está pronto. Para rodar clique no botão de executar o projeto no Visual Studio e a tela com o Swagger deverá ser exibida com as rotas.
+### 6.4 - Informações úteis
+1. O nome do banco de dados definido no appsettings.json deve ser o mesmo que foi criado no passo 1 da seção 6.3
+2. O usuário "testes" deve existir no SQL Server, caso não exista deve ser criado ou você pode utilizar um usuário próprio, atendando-se apenas em configurar corretamente o usuário e senha no arquivo appsettings.json
+3. Você deve realizar a configuração do usuário e e a criação do banco de dados "DB_SistemaDeTarefas" manualmente no gerenciador do SQL Server<br><br>
 
 ## <div id="secao7">7.0 - Implementações após o vídeo base</div>
+* Sistema de tarefas
+* Relação entre usuário e tarefas
+* Frontend web e mobile com React
